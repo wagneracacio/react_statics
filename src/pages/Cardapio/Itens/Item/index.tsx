@@ -1,8 +1,8 @@
 import styles from './Item.module.scss'
-import cardapio from 'data/cardapio.json'
 import classNames from 'classnames'
+import { Prato } from 'types/Prato'
 
-type Props = typeof cardapio[0];
+type Props = Prato
 
 export default function Item(props: Props) {
   const { title, description, category, size, serving, price, photo } = props
@@ -17,10 +17,12 @@ export default function Item(props: Props) {
           <p>{description}</p>
         </div>
         <div className={styles.item__tags}>
-          <div className={classNames({ 
-            [styles.item__tipo]: true ,
-            [styles[`item__tipo__${category.label.toLowerCase()}`]]: true
-          })}>
+          <div
+            className={classNames({
+              [styles.item__tipo]: true,
+              [styles[`item__tipo__${category.label.toLowerCase()}`]]: true,
+            })}
+          >
             {category.label}
           </div>
           <div className={styles.item__porcao}>{size}g</div>
